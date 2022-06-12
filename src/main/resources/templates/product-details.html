@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+				xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Single Product - Football Merch</title>
+    <link rel="stylesheet" href="css/style.css" th:href="@{/css/style.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    
+</head>
+<body>
+<div class="header products-nav">
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <a href="#" th:href="@{/}"><img src="images/logo.png" th:src="@{/images/logo.png}" alt="site-logo" width="125px"></a>
+            </div>
+            <nav>
+                <ul id="MenuItems">
+                    <li><a href="#" th:href="@{/}">Home</a></li>
+                    <li><a href="#" th:href="@{/AllProducts}">Products</a></li>
+                    <li><a href="#" sec:authorize="isAnonymous()" th:href="@{/login}">Login</a></li>
+                    <li><a href="#" sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a></li>
+                    <!--<li><a href="#">Account</a></li>-->
+                </ul>
+            </nav>
+            <li><a href="#" th:href="@{/cart}"><i class="fa fa-shopping-cart fa-2x"></i></a></li>
+            <li><span th:text="${cartCount}">0</span></li>
+            <img th:src="@{/images/menu.png}" src="images/menu.png" class="menu-icon" onclick="menutoggle()">
+        </div>
+    </div>
+</div>
+
+<!------single product details------>
+
+<div class="small-container single-product">
+    <div class="row">
+        <div class="col-2">
+            <img th:src="@{${'/productImages/' + product.imageName}}"
+                 alt="" src="images/adidas black.jpg" height="300px" width="300px" id="ProductImg">
+            <div class="small-img-row">
+                <div class="small-img-col">
+                    <img th:src="@{${'/productImages/' + product.imageName}}"
+                 alt="" src="images/adidas black.jpg" width="100%" class="small-img">
+                </div>
+                <div class="small-img-col">
+                    <img th:src="@{${'/productImages/' + product.imageName}}"
+                 alt="" src="images/adidas black.jpg" width="100%" class="small-img">
+                </div>
+                <div class="small-img-col">
+                    <img th:src="@{${'/productImages/' + product.imageName}}"
+                 alt="" src="images/adidas black.jpg" width="100%" class="small-img">
+                </div>
+                <div class="small-img-col">
+                    <img th:src="@{${'/productImages/' + product.imageName}}"
+                 alt="" src="images/adidas black.jpg" width="100%" class="small-img">
+                </div>
+            </div>
+        </div>
+        <div class="col-2">
+            <p th:text="${product.category.name}">Cleats</p>
+            <h1 th:text="${product.name}">Red Cleats by Nike</h1>
+            <h4>Rs. <span th:text="${product.price}"></span></h4>
+	        <div th:switch="${product.category.id}">	
+	        	<div class="select-wrap" th:case="1">
+	        		<label style="color: white;">Select Size:</label>
+		            <select name="size" id="" style="margin-top: 4px;">
+		                <!--<option value="" selected>Select Size: (Default: 7)</option>-->
+		                <option value="4">4</option>
+		                <option value="5">5</option>
+		                <option value="6">6</option>
+		                <option value="7">7</option>
+		                <option value="8" selected>8</option>
+		                <option value="9">9</option>
+		                <option value="10">10</option>
+		                <option value="10">11</option>
+		                <option value="10">12</option>
+		            </select>
+	        	</div>
+	        	<div class="select-wrap" th:case="2">
+	        		<label style="color: white;">Select Size:</label>
+		            <select name="size" id="" style="margin-top: 4px;">
+		                <!--<option value="" selected>Select Size: (Default: 7)</option>-->
+		                <option value="4">4</option>
+		                <option value="5" selected>5</option>
+		                <option value="6">6</option>
+		            </select>
+	        	</div>
+	        	<div class="select-wrap" th:case="3">
+	        		<label style="color: white;">Select Size:</label>
+		            <select name="size" id="" style="margin-top: 4px;">
+		                <!--<option value="" selected>Select Size: (Default: 7)</option>-->
+		                <option value="4" selected>Short</option>
+		                <option value="5">Medium</option>
+		            </select>
+	        	</div>
+	        	<div class="select-wrap" th:case="4">
+	        		<label style="color: white;">Select Size:</label>
+		            <select name="size" id="" style="margin-top: 4px;">
+		                <!--<option value="" selected>Select Size: (Default: 7)</option>-->
+		                <option value="4">Short</option>
+		                <option value="5" selected>Medium</option>
+		                <option value="6">Long</option>
+		            </select>
+	        	</div>
+	        </div>
+            <!--<input type="number" value="1">-->
+            <a href="" th:href="@{/addToCart/{id}(id = ${product.id})}" class="btn">Add To Cart</a>
+            <h3>Product Details <i class="fa fa-indent"></i></h3>
+            <br>
+            <p th:text="${product.description}">lorem ipsum dolores sit amet</p>
+        </div>
+    </div>
+</div>
+
+<!--------title-------->
+<!--
+<div class="small-container">
+    <div class="row row-2">
+        <h2>Related Products</h2>
+        <p>View More</p>
+    </div>
+</div>
+-->
+<!--------products-------->
+<!--
+<div class="small-container">
+
+    <div class="row">
+        <div class="col-4 products">
+            <img src="images/adidas black.jpg">
+            <h4>Red Cleats</h4>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-o"></i>
+            </div>
+            <p>$50.00</p>
+        </div>
+        <div class="col-4 products">
+            <img src="images/adidas black.jpg">
+            <h4>Red Cleats</h4>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+            </div>
+            <p>$50.00</p>
+        </div>
+        <div class="col-4 products">
+            <img src="images/adidas black.jpg">
+            <h4>Red Cleats</h4>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-half-o"></i>
+            </div>
+            <p>$50.00</p>
+        </div>
+        <div class="col-4 products">
+            <img src="images/adidas black.jpg">
+            <h4>Red Cleats</h4>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-half-o"></i>
+            </div>
+            <p>$50.00</p>
+        </div>
+    </div>
+
+</div>
+-->
+<!-------footer------>
+
+   <div class="footer">
+       <div class="container">
+           <div class="row">
+               <div class="footer-col-1">
+                   <h3>Join Our Newsletter</h3>
+                   <input type="email" placeholder="Enter your email address" id="footer-email">
+                   <input type="submit" value="Sign Up" id="footer-email-btn">
+               </div>
+               <div class="footer-col-2">
+                   <img th:src="@{/images/logo.png}" src="images/logo.png">
+                   <p>Our Aim Is to Substantially Make The Pleasure and Benefits of Sports Accessible to All. </p>
+               </div>
+               <div class="footer-col-3">
+                    <h3>Useful Links</h3>
+                    <ul>
+                        <li><a href="">Blog Post</a></li>
+                        <li><a href="">Return Policy</a></li>
+                        <li><a href="">Join Affiliate</a></li>
+                        <li><a href="">Coupons</a></li>
+                    </ul>
+                </div>
+               <div class="footer-col-4">
+                    <h3>Social Media</h3>
+                    <ul>
+                        <li><a href="">Facebook</a></li>
+                        <li><a href="">Twitter</a></li>
+                        <li><a href="">Instagram</a></li>
+                        <li><a href="">Youtube</a></li>
+                    </ul>
+                </div>
+           </div>
+           <hr>
+           <p class="copyright"><i class="fa fa-copyright"></i> Copyright 2021 - Football Merch</p>
+       </div>
+   </div>
+
+
+
+
+<script src="js/scripts.js" th:src="@{/js/scripts.js}"></script>
+
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+				xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Products - Football Merch</title>
+    <link rel="stylesheet" href="css/style.css" th:href="@{/css/style.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    
+</head>
+<body>
+<div class="header products-nav">
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <a href="#" th:href="@{/}"><img th:src="@{/images/logo.png}" src="images/logo.png" alt="site-logo" width="125px"></a>
+            </div>
+            <nav>
+                <ul id="MenuItems">
+                    <li><a href="#" th:href="@{/}">Home</a></li>
+                    <li><a href="#" th:href="@{/AllProducts}">Products</a></li>
+                    <li><a href="#" sec:authorize="isAnonymous()" th:href="@{/login}">Login</a></li>
+                    <li><a href="#" sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a></li>
+                    <!--<li><a href="#">Account</a></li>-->
+                </ul>
+            </nav>
+            <li><a href="#" th:href="@{/cart}"><i class="fa fa-shopping-cart fa-2x"></i></a></li>
+            <li><span th:text="${cartCount}">0</span></li>
+            <img th:src="@{/images/menu.png}" src="images/menu.png" class="menu-icon" onclick="menutoggle()">
+        </div>
+    </div>
+</div>
+
+<!------products------->
+
+<!----><div class="small-container">
+
+    <!----><div class="row row-2">
+        <h2>Items</h2>
+        <ul class="category-selector">
+            <a th:href="@{/AllProducts}"><li>All Products</li></a>
+            <a class="category links" href="" th:each="category, iStat : ${categories}"
+                   th:href="@{/AllProducts/category/{id}(id=${category.id})}">
+                   <li th:text="${category.name}">category</li></a>
+        
+        <!--<select name="" id="">
+            <option value="">All Products</option>
+            <option value="">Category: Cleats</option>
+            <option value="">Category: Cleats</option>
+            <option value="">Sort by Rating</option>
+        </select>-->
+    </div>
+
+    <div class="row">
+        <div class="col-4 products" th:each="product : ${products}">
+            <img height="150px" width="150px" src="images/adidas black.jpg" th:src="@{${'/productImages/' + product.imageName}}" th:alt="${product.name}">
+            <h4 th:text="${product.name}" style="color: rgb(0, 128, 255);"></h4>
+            <!--<div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-o"></i>
+            </div>-->
+            <p style="color: Red; margin-bottom: 5px;">Rs. <span th:text="${product.price}"></span></p>
+            <p class="product-desc" th:text="${product.description}" >Best products in the market</p>
+            <a href="#" th:href="@{/AllProducts/viewproduct/{id}(id=${product.id})}" class="product-link">View Product</a>
+        </div>    
+        <!--<div class="col-4 products">
+            <img src="images/adidas black.jpg">
+            <h4>Red Cleats</h4>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+            </div>
+            <p>$50.00</p>
+        </div>
+        <div class="col-4 products">
+            <img src="images/adidas black.jpg">
+            <h4>Red Cleats</h4>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-half-o"></i>
+            </div>
+            <p>$50.00</p>
+        </div>
+        <div class="col-4 products">
+            <img src="images/adidas black.jpg">
+            <h4>Red Cleats</h4>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-half-o"></i>
+            </div>
+            <p>$50.00</p>
+        </div>
+        <div class="col-4 products">
+            <img src="images/adidas black.jpg">
+            <h4>Red Cleats</h4>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-half-o"></i>
+            </div>
+            <p>$50.00</p>
+        </div>
+        <div class="col-4 products">
+            <img src="images/adidas black.jpg">
+            <h4>Red Cleats</h4>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-half-o"></i>
+            </div>
+            <p>$50.00</p>
+        </div>
+        <div class="col-4 products">
+            <img src="images/adidas black.jpg">
+            <h4>Red Cleats</h4>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-half-o"></i>
+            </div>
+            <p>$50.00</p>
+        </div>
+        <div class="col-4 products">
+            <img src="images/adidas black.jpg">
+            <h4>Red Cleats</h4>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-half-o"></i>
+            </div>
+            <p>$50.00</p>
+        </div>
+        <div class="col-4 products">
+            <img src="images/adidas black.jpg">
+            <h4>Red Cleats</h4>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-half-o"></i>
+            </div>
+            <p>$50.00</p>
+        </div>
+        <div class="col-4 products">
+            <img src="images/adidas black.jpg">
+            <h4>Red Cleats</h4>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-half-o"></i>
+            </div>
+            <p>$50.00</p>
+        </div>
+        <div class="col-4 products">
+            <img src="images/adidas black.jpg">
+            <h4>Red Cleats</h4>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-half-o"></i>
+            </div>
+            <p>$50.00</p>
+        </div>
+        <div class="col-4 products">
+            <img src="images/adidas black.jpg">
+            <h4>Red Cleats</h4>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-half-o"></i>
+            </div>
+            <p>$50.00</p>
+        </div>-->
+    </div>
+
+    <!--<div class="page-btn">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>&#8594;</span>
+    </div>-->
+</div>
+
+<!-------footer------>
+
+   <div class="footer">
+       <div class="container">
+           <div class="row">
+               <div class="footer-col-1">
+                   <h3>Join Our Newsletter</h3>
+                   <input type="email" placeholder="Enter your email address" id="footer-email">
+                   <input type="submit" value="Sign Up" id="footer-email-btn">
+               </div>
+               <div class="footer-col-2">
+                   <img th:src="@{/images/logo.png}" src="images/logo.png">
+                   <p>Our Aim Is to Substantially Make The Pleasure and Benefits of Sports Accessible to All. </p>
+               </div>
+               <div class="footer-col-3">
+                    <h3>Useful Links</h3>
+                    <ul>
+                        <li><a href="">Blog Post</a></li>
+                        <li><a href="">Return Policy</a></li>
+                        <li><a href="">Join Affiliate</a></li>
+                        <li><a href="">Coupons</a></li>
+                    </ul>
+                </div>
+               <div class="footer-col-4">
+                    <h3>Social Media</h3>
+                    <ul>
+                        <li><a href="">Facebook</a></li>
+                        <li><a href="">Twitter</a></li>
+                        <li><a href="">Instagram</a></li>
+                        <li><a href="">Youtube</a></li>
+                    </ul>
+                </div>
+           </div>
+           <hr>
+           <p class="copyright"><i class="fa fa-copyright"></i> Copyright 2021 - Football Merch</p>
+       </div>
+   </div>
+
+
+
+
+<script src="js/scripts.js" th:src="@{/js/scripts.js}"></script>
+
+</body>
+</html>

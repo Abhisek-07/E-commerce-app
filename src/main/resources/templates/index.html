@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" 
+				xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football Merch</title>
+    <link rel="stylesheet" href="css/style.css" th:href="@{/css/style.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    
+</head>
+<body>
+<div class="header">
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <a href="index.html" th:href="@{/}"><img src="images/logo.png" th:src="@{/images/logo.png}" alt="site-logo" width="125px"></a>
+            </div>
+            <nav>
+                <ul id="MenuItems">
+                    <li><a href="#" th:href="@{/}">Home</a></li>
+                    <li><a href="#" th:href="@{/AllProducts}">Products</a></li>
+                    <li><a href="#" sec:authorize="isAnonymous()" th:href="@{/login}">Login</a></li>
+                    <li><a href="#" sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a></li>
+                    <!--<li><a href="#">Account</a></li>-->
+                </ul>
+            </nav>
+            <a href="#" th:href="@{/cart}"><i class="fa fa-shopping-cart fa-2x"></i></a>
+            <li><span th:text="${cartCount}">0</span></li>
+            <img src="images/menu.png" th:src="@{/images/menu.png}" class="menu-icon" onclick="menutoggle()">
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <h1>Play Like A Champion <br>Today</h1>
+                <a href="#" th:href="@{/AllProducts}" class="btn">Explore Now &#8594;</a>
+            </div>
+            <div class="col-2">
+                <img src="images/343570.jpg" th:src="@{/images/343570.jpg}" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+   
+   <!----- featured categories ----->
+   <!---->
+   <div class="categories">
+      <div class="small-container">
+        <h2 class="title">Featured Categories</h2>
+        <div class="row">
+           <div class="col-4">
+                <img src="images/2968831.jpg" th:src="@{/images/2968831.jpg}" alt="">
+                <h4>Footballs</h4>
+           </div>
+           <div class="col-4">
+                <img src="images/unrecognizable-little-football-player-against-600w-447297322.jpg" th:src="@{/images/unrecognizable-little-football-player-against-600w-447297322.jpg}" alt="">
+                <h4>Cleats</h4>
+           </div>
+           <div class="col-4">
+                <img src="images/soccer-shin-guard-500x500.jpg" th:src="@{/images/soccer-shin-guard-500x500.jpg}" alt="">
+                <h4>Shins</h4>
+           </div>
+           <div class="col-4">
+                <img src="images/89bdf593a85f15772911384d0f43779e.jpg" th:src="@{/images/89bdf593a85f15772911384d0f43779e.jpg}" alt="">
+                <h4>Socks</h4>
+           </div>
+       </div>
+      </div>
+   </div>
+
+<!---testimonial-->
+   <div class="testimonial">
+       <div class="small-container">
+           <h2 class="title">Testimonials</h2>
+           <div class="row">
+                <div class="col-3">
+                    <i class="fa fa-quote-left"></i>
+                    <p>
+                        Lorem ipsum dolores sit amet
+                    </p>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                    <img src="images/Biswal image.jpeg" th:src="@{/images/Biswal image.jpeg}">
+                    <h3>Ashutosh Biswal</h3>
+                </div>
+                <div class="col-3">
+                    <i class="fa fa-quote-left"></i>
+                    <p>
+                        Lorem ipsum dolores sit amet
+                    </p>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-half-o"></i>
+                    </div>
+                    <img src="images/Swaraj image.jpeg" th:src="@{/images/Swaraj image.jpeg}">
+                    <h3>Swaraj Paul</h3>
+                </div>
+                <div class="col-3">
+                    <i class="fa fa-quote-left"></i>
+                    <p>
+                        Lorem ipsum dolores sit amet
+                    </p>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <img src="images/Dasa image.jpg" th:src="@{/images/Dasa image.jpg}">
+                    <h3>Abhisek Dash</h3>
+                </div>
+                
+           </div>
+       </div>
+   </div>
+
+<!------- brands ---->
+
+   <div class="brands">
+       <div class="small-container">
+           <div class="row">
+                <div class="col-5">
+                   <img src="images/nike-logo.png" th:src="@{/images/nike-logo.png}">
+                </div>
+                <div class="col-5">
+                    <img src="images/Adidas-Logo-White-PNG.png" th:src="@{/images/Adidas-Logo-White-PNG.png}">
+                </div>
+                <div class="col-5">
+                    <img src="images/nb logo white.png" th:src="@{/images/nb logo white.png}">
+                </div>
+                <div class="col-5">
+                    <img src="images/puma-logo-cover-958x575.png" th:src="@{/images/puma-logo-cover-958x575.png}">
+                </div>
+                <div class="col-5">
+                    <img src="images/reebok-logo-black-and-white-2.png" th:src="@{/images/reebok-logo-black-and-white-2.png}">
+                </div>
+           </div>
+       </div>
+   </div>
+
+<!-------footer------>
+
+   <div class="footer">
+       <div class="container">
+           <div class="row">
+               <div class="footer-col-1">
+                   <h3>Join Our Newsletter</h3>
+                   <input type="email" placeholder="Enter your email address" id="footer-email">
+                   <input type="submit" value="Sign Up" id="footer-email-btn">
+               </div>
+               <div class="footer-col-2">
+                   <img src="images/logo.png" th:src="@{/images/logo.png}">
+                   <p>Our Aim Is to Substantially Make The Pleasure and Benefits of Sports Accessible to All. </p>
+               </div>
+               <div class="footer-col-3">
+                    <h3>Useful Links</h3>
+                    <ul>
+                        <li><a href="">Blog Post</a></li>
+                        <li><a href="">Return Policy</a></li>
+                        <li><a href="">Join Affiliate</a></li>
+                        <li><a href="">Coupons</a></li>
+                    </ul>
+                </div>
+               <div class="footer-col-4">
+                    <h3>Social Media</h3>
+                    <ul>
+                        <li><a href="">Facebook</a></li>
+                        <li><a href="">Twitter</a></li>
+                        <li><a href="">Instagram</a></li>
+                        <li><a href="">Youtube</a></li>
+                    </ul>
+                </div>
+           </div>
+           <hr>
+           <p class="copyright"><i class="fa fa-copyright"></i> Copyright 2021 - Football Merch</p>
+       </div>
+   </div>
+
+
+
+<script src="js/scripts.js" th:src="@{/js/scripts.js}"></script>
+
+
+</body>
+</html>
